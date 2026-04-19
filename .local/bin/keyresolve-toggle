@@ -1,0 +1,64 @@
+#!/bin/sh
+# Toggle keyresolve (SOCD cleaner) on/off.
+#
+# On first run (no config), prompts via fuzzel to pick a keyboard,
+# then remembers the choice at $XDG_CONFIG_HOME/keyresolve/device.
+# Run with --reset to clear the saved device.
+
+set -u
+
+NAME_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/keyresolve/device"
+
+if [ "${1:-}" = "--reset" ]; then
+    rm -f "$NAME_FILE"
+    notify-send KeyResolve "Config reset"
+    exit 0
+fi
+
+if pkill -x keyresolve; then
+    notify-send KeyResolve "SOCD off"
+    exit 0
+fi
+
+# keyresolve prints its device list to stdout and then reads an index from
+# stdin. Closing stdin makes it print the list and exit with a parse error;
+# we just want the list.
+LIST=$(keyresolve </dev/null 2>&1)
+
+NAME=""
+[ -r "$NAME_FILE" ] && NAME=$(cat "$NAME_FILE")
+
+LINE=""
+[ -n "$NAME" ] && LINE=$(printf '%s\n' "$LIST" | grep -F ": ${NAME} (" | head -n1)
+
+if [ -z "$LINE" ]; then
+    if ! command -v fuzzel >/dev/null 2>&1; then
+        notify-send -u critical KeyResolve \
+            "No saved device and fuzzel missing — write $NAME_FILE manually"
+        exit 1
+    fi
+
+    OPTIONS=$(printf '%s\n' "$LIST" \
+        | sed -nE 's|^[0-9]+: (.*) \(/dev/input/event[0-9]+\)$|\1|p')
+    if [ -z "$OPTIONS" ]; then
+        notify-send -u critical KeyResolve "No input devices listed"
+        exit 1
+    fi
+
+    CHOICE=$(printf '%s\n' "$OPTIONS" | fuzzel --dmenu --prompt "keyresolve > ")
+    [ -z "$CHOICE" ] && exit 0
+
+    mkdir -p "$(dirname "$NAME_FILE")"
+    printf '%s\n' "$CHOICE" > "$NAME_FILE"
+    NAME="$CHOICE"
+    LINE=$(printf '%s\n' "$LIST" | grep -F ": ${NAME} (" | head -n1)
+fi
+
+IDX=${LINE%%:*}
+if [ -z "$IDX" ]; then
+    notify-send -u critical KeyResolve "Failed to resolve: $NAME"
+    exit 1
+fi
+
+setsid sh -c "echo $IDX | keyresolve" </dev/null >/dev/null 2>&1 &
+notify-send KeyResolve "SOCD on: $NAME"

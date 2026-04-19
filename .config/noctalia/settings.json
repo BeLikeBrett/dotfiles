@@ -245,7 +245,7 @@
                     ]
                 },
                 {
-                    "compactMode": false,
+                    "compactMode": true,
                     "diskPath": "/",
                     "iconColor": "tertiary",
                     "id": "SystemMonitor",

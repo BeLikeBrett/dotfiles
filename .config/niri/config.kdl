@@ -354,6 +354,7 @@ binds {
     Mod+W { focus-window-or-workspace-up ; }
     Mod+E { spawn "nautilus" "--new-window" ; }
     Mod+X {        spawn "firefox" "--new-window" ;}
+    Mod+G { spawn-sh "$HOME/.local/bin/keyresolve-toggle" ; }
 
     Mod+S { focus-window-or-workspace-down ; }
     Mod+Shift+A  { move-column-left-or-to-monitor-left ; }

@@ -63,6 +63,7 @@ paru -S --needed -- \
     brightnessctl \
     wlsunset \
     cliphist \
+    libnotify \
     \
     `# --- Qt theming (Noctalia is a Qt shell) ---` \
     qt5-graphicaleffects \
@@ -96,6 +97,7 @@ paru -S --needed -- \
     protontricks \
     mangohud \
     mangojuice \
+    keyresolve-git \
     \
     `# --- Media playback + recording ---` \
     mpv \
