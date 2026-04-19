@@ -106,7 +106,6 @@ paru -S --needed -- \
     imv \
     obs-studio \
     gpu-screen-recorder \
-    gpu-screen-recorder-ui \
     \
     `# --- CLI tools you use daily ---` \
     bat \
