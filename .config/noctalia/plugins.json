@@ -23,6 +23,10 @@
             "enabled": true,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
         },
+        "gsr-noctalia": {
+            "enabled": true,
+            "sourceUrl": "local"
+        },
         "keybind-cheatsheet": {
             "enabled": true,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
@@ -41,6 +45,10 @@
         },
         "privacy-indicator": {
             "enabled": true,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "screen-recorder": {
+            "enabled": false,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
         },
         "screenshot": {

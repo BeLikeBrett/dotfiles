@@ -155,13 +155,42 @@
             ],
             "left": [
                 {
-                    "colorizeSystemIcon": "tertiary",
-                    "customIconPath": "",
-                    "enableColorization": true,
-                    "icon": "rocket",
-                    "iconColor": "none",
-                    "id": "Launcher",
-                    "useDistroLogo": false
+                    "defaultSettings": {
+                        "audioBitrate": "",
+                        "audioCodec": "opus",
+                        "audioTracks": [
+                            "default_output"
+                        ],
+                        "bitrateMode": "auto",
+                        "colorRange": "limited",
+                        "container": "mp4",
+                        "copyToClipboard": false,
+                        "customFrameRate": "60",
+                        "customReplayDuration": "30",
+                        "dateFolders": false,
+                        "directory": "",
+                        "encoder": "gpu",
+                        "fallbackCpuEncoding": false,
+                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
+                        "frameRate": "60",
+                        "frameRateMode": "vfr",
+                        "hideInactive": false,
+                        "iconColor": "none",
+                        "keyframeInterval": "",
+                        "postSaveScript": "",
+                        "quality": "very_high",
+                        "replayAlwaysOn": false,
+                        "replayDuration": "30",
+                        "replayEnabled": false,
+                        "replayStorage": "ram",
+                        "resolution": "original",
+                        "restartReplayOnSave": false,
+                        "restorePortalSession": false,
+                        "showCursor": true,
+                        "videoCodec": "h264",
+                        "videoSource": "portal"
+                    },
+                    "id": "plugin:gsr-noctalia"
                 },
                 {
                     "colorizeSystemIcon": "tertiary",

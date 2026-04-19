@@ -81,6 +81,7 @@ paru -S --needed -- \
     ttf-dejavu \
     ttf-liberation \
     terminus-font \
+    ttf-input-nerd \
     \
     `# --- File manager + basic editors ---` \
     nautilus \

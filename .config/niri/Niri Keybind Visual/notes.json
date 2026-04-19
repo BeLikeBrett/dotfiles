@@ -1,5 +1,6 @@
 {
   "e|MOD|spawn nautilus --new-window": "Opens file manager\n",
+  "g|MOD|spawn-sh $HOME/.local/bin/keyresolve-toggle": "Turns on and off SOCD\n",
   "space|MOD|spawn qs -c noctalia-shell ipc call launcher toggle": "Opens app launcher\n",
   "x|MOD|spawn firefox --new-window": "Opens firefox\n"
 }
