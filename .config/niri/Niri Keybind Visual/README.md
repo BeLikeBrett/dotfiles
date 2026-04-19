@@ -1,9 +1,11 @@
 # Niri Keybind Visual
 
-A native-feeling desktop launcher for [Visu](https://github.com/omer-biz/visu) (a
-Niri keymap visualizer) that auto-loads your live `~/.config/niri/config.kdl`
-when you press **Mod+K**, plus a per-binding notes feature so you can annotate
-what each keybind does and have those notes persist between launches.
+> Based on **[Visu](https://github.com/omer-biz/visu)** by omer-biz — licensed under its original terms (see `visu/LICENSE`). This fork adds a **per-binding notes feature** (textarea on each keybind that persists to `notes.json`) and a Python launcher that injects your live niri config at startup.
+
+A native-feeling desktop launcher for Visu (a Niri keymap visualizer) that
+auto-loads your live `~/.config/niri/config.kdl` when you press **Mod+K**, plus
+a per-binding notes feature so you can annotate what each keybind does and
+have those notes persist between launches.
 
 Visu upstream is a web app — this project clones it, patches it to accept an
 injected config string at startup, adds a notes textarea to each binding, and
@@ -14,7 +16,7 @@ locally and opens it in a chromeless Chrome window.
 
 ## What gets opened when you press Mod+K
 
-1. **Niri** reads its config and sees `Mod+K { spawn "/home/brett/Niri Keybind Visual/launcher"; }` — see `~/.config/niri/config.kdl`.
+1. **Niri** reads its config and sees `Mod+K { spawn "/home/brett/.config/niri/Niri Keybind Visual/launcher"; }` — see `~/.config/niri/config.kdl`.
 2. **Niri spawns the launcher** (`./launcher`, a Python script).
 3. **The launcher**:
    - Reads `~/.config/niri/config.kdl` (your live config)
@@ -34,7 +36,7 @@ Each launch re-reads `config.kdl` from disk, so edits to your niri config show u
 ## Folder structure
 
 ```
-~/Niri Keybind Visual/
+~/.config/niri/Niri Keybind Visual/
 ├── README.md            # this file
 ├── launcher             # Python launcher script (see below)
 ├── notes.json           # your saved per-binding notes (created on first save)
@@ -163,7 +165,7 @@ filing if it's not fixed yet.
 ## Rebuilding after pulling upstream changes
 
 ```bash
-cd ~/Niri\ Keybind\ Visual/visu
+cd ~/.config/niri/Niri\ Keybind\ Visual/visu
 git pull
 # reapply the patches above if upstream touched Main.elm/main.ts/index.html/vite.config.ts/Ports.elm
 (cd parser && wasm-pack build --target web --out-dir pkg)
@@ -191,7 +193,7 @@ the placeholder survived, the next Mod+K press will pick up the rebuild.
 Edit `~/.config/niri/config.kdl` and change the line:
 
 ```kdl
-Mod+K { spawn "/home/brett/Niri Keybind Visual/launcher"; }
+Mod+K { spawn "/home/brett/.config/niri/Niri Keybind Visual/launcher"; }
 ```
 
 Niri auto-reloads on save, so no restart needed. You can verify the config is
@@ -212,7 +214,7 @@ When you click any key on the keyboard view, each binding card in the right
 panel has a **NOTE** textarea below the actions list. Type whatever you want —
 the Elm app emits a `saveNotes` port message on every keystroke, JS debounces
 saves to one POST per ~400ms idle, and the launcher's HTTP server writes the
-full notes dict back to `~/Niri Keybind Visual/notes.json`. Clearing the
+full notes dict back to `~/.config/niri/Niri Keybind Visual/notes.json`. Clearing the
 textarea removes the note from the file.
 
 Notes are keyed by a stable per-binding ID (`key|sorted-modifiers|actions`), so:
@@ -237,7 +239,7 @@ the vite-plugin-elm patch (#6) — Elm fails to compile, but the launcher
 serves the stale `dist/` and Chrome shows whatever the last good build had.
 
 **Notes don't persist after closing Visu**
-Check that `~/Niri Keybind Visual/notes.json` is being written. Open
+Check that `~/.config/niri/Niri Keybind Visual/notes.json` is being written. Open
 DevTools (Ctrl+Shift+I) in the Visu window, type a note, and watch the
 Network tab for a `POST /api/notes` returning 204. If it 404s, the launcher
 is running an older version without the API endpoint — restart it. If the
@@ -269,7 +271,7 @@ never collide with your normal Chrome session. If it does, there's a stale
 ## Uninstalling
 
 ```bash
-rm -rf ~/Niri\ Keybind\ Visual
+rm -rf ~/.config/niri/Niri\ Keybind\ Visual
 rm ~/.local/bin/visu
 # then manually remove the Mod+K line from ~/.config/niri/config.kdl
 ```

@@ -17,7 +17,7 @@ import sys
 import threading
 from pathlib import Path
 
-PROJECT_ROOT = Path.home() / "Niri Keybind Visual"
+PROJECT_ROOT = Path(__file__).resolve().parent
 VISU_DIST = PROJECT_ROOT / "visu" / "dist"
 NIRI_CONFIG = Path.home() / ".config" / "niri" / "config.kdl"
 NOTES_FILE = PROJECT_ROOT / "notes.json"
