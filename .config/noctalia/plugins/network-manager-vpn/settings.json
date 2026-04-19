@@ -1,0 +1,6 @@
+{
+  "displayMode": "alwaysShow",
+  "connectedColor": "error",
+  "disconnectedColor": "none",
+  "disableToastNotifications": false
+}

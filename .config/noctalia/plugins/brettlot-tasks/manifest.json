@@ -1,0 +1,26 @@
+{
+  "id": "brettlot-tasks",
+  "name": "BrettLoT Tasks",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.7.1",
+  "author": "Brett",
+  "license": "MIT",
+  "description": "Synced task manager from BrettLoT, powered by a self-hosted API.",
+  "tags": ["Bar", "Panel", "Productivity"],
+  "entryPoints": {
+    "main": "Main.qml",
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml",
+    "settings": "Settings.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {
+      "serverUrl": "http://192.168.0.108:8990",
+      "apiKey": "brettlot-dev-key",
+      "pollIntervalSec": 30
+    }
+  }
+}

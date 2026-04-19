@@ -1,0 +1,9 @@
+{
+  "hideInactive": true,
+  "enableToast": true,
+  "iconSpacing": 2,
+  "removeMargins": false,
+  "activeColor": "error",
+  "inactiveColor": "none",
+  "micFilterRegex": "gsr-alsa"
+}

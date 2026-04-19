@@ -1,0 +1,8 @@
+{
+  "updateIntervalMinutes": 60,
+  "updateTerminalCommand": "kitty -e",
+  "currentIconName": "arrow-big-down-filled",
+  "hideOnZero": true,
+  "customCmdGetNumUpdates": "",
+  "customCmdDoSystemUpdate": ""
+}

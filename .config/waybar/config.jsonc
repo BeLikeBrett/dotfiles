@@ -1,0 +1,51 @@
+{
+    "output": "DP-2",
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "group/media"
+    ],
+    "clock": {
+        "format": "{:%A, %B %d  %I:%M %p}",
+        "tooltip": false
+    },
+    "group/media": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/prev",
+            "mpris",
+            "custom/next"
+        ]
+    },
+    "custom/prev": {
+        "exec": "playerctl --player=spotify status 2>/dev/null | grep -qE 'Playing|Paused' && echo '' || echo ''",
+        "interval": 2,
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify previous"
+    },
+    "custom/next": {
+        "exec": "playerctl --player=spotify status 2>/dev/null | grep -qE 'Playing|Paused' && echo '' || echo ''",
+        "interval": 2,
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify next"
+    },
+    "mpris": {
+        "player": "spotify",
+        "interval": 1,
+        "format": " {dynamic}",
+        "format-paused": " {dynamic}",
+        "format-stopped": "",
+        "dynamic-order": [
+            "title",
+            "artist"
+        ],
+        "dynamic-separator": " — ",
+        "dynamic-len": 32,
+        "tooltip-format": "{title}\n{artist}\n{album}",
+        "on-click": "playerctl --player=spotify play-pause"
+    }
+}

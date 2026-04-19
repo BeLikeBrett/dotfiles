@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Launcher for Visu (Niri Keymap Visualizer).
+
+Reads ~/.config/niri/config.kdl, embeds it into a runtime copy of Visu's
+built index.html, serves the dist directory over a local HTTP server (Chrome
+blocks ES modules from file:// origins), and opens it in google-chrome-stable
+--app mode. The server is torn down when Chrome exits.
+"""
+
+import http.server
+import json
+import shutil
+import socket
+import socketserver
+import subprocess
+import sys
+import threading
+from pathlib import Path
+
+PROJECT_ROOT = Path.home() / "Niri Keybind Visual"
+VISU_DIST = PROJECT_ROOT / "visu" / "dist"
+NIRI_CONFIG = Path.home() / ".config" / "niri" / "config.kdl"
+NOTES_FILE = PROJECT_ROOT / "notes.json"
+RUNTIME_HTML = VISU_DIST / "index.runtime.html"
+PLACEHOLDER = "/*__NIRI_CONFIG_PLACEHOLDER__*/"
+
+
+def find_free_port() -> int:
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
+
+
+def main() -> int:
+    src_html = VISU_DIST / "index.html"
+    if not src_html.exists():
+        print(f"visu: build not found at {src_html}", file=sys.stderr)
+        print(f"visu: run `cd \"{PROJECT_ROOT / 'visu'}\" && pnpm vite build` first",
+              file=sys.stderr)
+        return 1
+
+    if not NIRI_CONFIG.exists():
+        print(f"visu: niri config not found at {NIRI_CONFIG}", file=sys.stderr)
+        return 1
+
+    config_text = NIRI_CONFIG.read_text(encoding="utf-8")
+
+    notes_obj: dict[str, str] = {}
+    if NOTES_FILE.exists():
+        try:
+            loaded = json.loads(NOTES_FILE.read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                notes_obj = {str(k): str(v) for k, v in loaded.items()}
+        except json.JSONDecodeError as e:
+            print(f"visu: warning — {NOTES_FILE} is not valid JSON ({e}); ignoring",
+                  file=sys.stderr)
+
+    injected = (
+        f"window.__NIRI_CONFIG__ = {json.dumps(config_text)};"
+        f"window.__NIRI_NOTES__ = {json.dumps(notes_obj)};"
+    )
+
+    html = src_html.read_text(encoding="utf-8")
+    if PLACEHOLDER not in html:
+        print(f"visu: placeholder {PLACEHOLDER!r} not found in built index.html",
+              file=sys.stderr)
+        return 1
+
+    RUNTIME_HTML.write_text(html.replace(PLACEHOLDER, injected), encoding="utf-8")
+
+    chrome = shutil.which("google-chrome-stable") or shutil.which("chromium")
+    if not chrome:
+        print("visu: google-chrome-stable (or chromium) not found in PATH",
+              file=sys.stderr)
+        return 1
+
+    profile_dir = PROJECT_ROOT / "chrome-profile"
+    profile_dir.mkdir(parents=True, exist_ok=True)
+
+    port = find_free_port()
+
+    class QuietHandler(http.server.SimpleHTTPRequestHandler):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, directory=str(VISU_DIST), **kwargs)
+
+        def log_message(self, *args, **kwargs):  # silence access logs
+            pass
+
+        def do_POST(self):
+            if self.path != "/api/notes":
+                self.send_response(404)
+                self.end_headers()
+                return
+
+            length = int(self.headers.get("Content-Length", "0"))
+            body = self.rfile.read(length)
+            try:
+                parsed = json.loads(body)
+                if not isinstance(parsed, dict):
+                    raise ValueError("expected JSON object")
+                # Re-serialize with sorted keys + indent so the file stays human-readable.
+                NOTES_FILE.write_text(
+                    json.dumps(parsed, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8",
+                )
+                self.send_response(204)
+                self.end_headers()
+            except (json.JSONDecodeError, ValueError) as e:
+                self.send_response(400)
+                self.end_headers()
+                self.wfile.write(str(e).encode())
+
+    server = socketserver.ThreadingTCPServer(("127.0.0.1", port), QuietHandler)
+    server.daemon_threads = True
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+
+    url = f"http://127.0.0.1:{port}/index.runtime.html"
+    try:
+        subprocess.run([
+            chrome,
+            f"--app={url}",
+            f"--user-data-dir={profile_dir}",
+            "--class=visu",
+        ])
+    finally:
+        server.shutdown()
+        server.server_close()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,49 @@
+{
+  "bar_widget": {
+    "todo_count_plural": "{count} tasks",
+    "todo_count_singular": "{count} task"
+  },
+  "actions": {
+    "widget_settings": "Settings"
+  },
+  "panel": {
+    "header": {
+      "title": "BrettLoT Tasks",
+      "clear_completed_button": "Clear Completed"
+    },
+    "add_todo": {
+      "placeholder": "Add a new task..."
+    },
+    "empty_state": {
+      "message": "No tasks yet"
+    }
+  },
+  "settings": {
+    "server_url": {
+      "label": "Server URL",
+      "description": "BrettLoT API server address",
+      "placeholder": "http://localhost:8990"
+    },
+    "api_key": {
+      "label": "API Key",
+      "description": "Authentication key for the API",
+      "placeholder": "your-api-key"
+    },
+    "poll_interval": {
+      "label": "Poll Interval (seconds)",
+      "description": "How often to sync with the server"
+    }
+  },
+  "main": {
+    "added_task": "Task added",
+    "completed_task": "Task completed",
+    "reactivated_task": "Task reactivated",
+    "deleted_task": "Task deleted",
+    "cleared_completed": "Cleared completed tasks",
+    "error_add": "Failed to add task",
+    "error_update": "Failed to update task",
+    "error_delete": "Failed to delete task",
+    "error_sync": "Failed to sync with server",
+    "error_empty_title": "Task title cannot be empty"
+  }
+}

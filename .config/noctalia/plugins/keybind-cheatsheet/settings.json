@@ -1,0 +1,301 @@
+{
+  "cheatsheetData": [
+    {
+      "title": "Applications",
+      "binds": [
+        {
+          "keys": "Super + K",
+          "desc": "Run: sh -c 'qs -c noctalia-shell ipc call plugin:keybind-cheatsheet toggle'"
+        },
+        {
+          "keys": "Super + E",
+          "desc": "Open Files"
+        },
+        {
+          "keys": "Ctrl + Tab",
+          "desc": "Open a Terminal: kitty"
+        },
+        {
+          "keys": "Ctrl + Space",
+          "desc": "Run an Application: Noctalia Launcher"
+        },
+        {
+          "keys": "Super + Escape",
+          "desc": "Run: kitty"
+        }
+      ]
+    },
+    {
+      "title": "Window Management",
+      "binds": [
+        {
+          "keys": "Super + Shift + F",
+          "desc": "Fullscreen Window"
+        },
+        {
+          "keys": "Super + Q",
+          "desc": "Close Window"
+        }
+      ]
+    },
+    {
+      "title": "Column Navigation",
+      "binds": [
+        {
+          "keys": "Super + A",
+          "desc": "Focus Column Left"
+        },
+        {
+          "keys": "Super + D",
+          "desc": "Focus Column Right"
+        }
+      ]
+    },
+    {
+      "title": "Window Focus",
+      "binds": [
+        {
+          "keys": "Super + W",
+          "desc": "Focus Window Or Workspace Up"
+        },
+        {
+          "keys": "Super + S",
+          "desc": "Focus Window Or Workspace Down"
+        }
+      ]
+    },
+    {
+      "title": "Move Columns",
+      "binds": [
+        {
+          "keys": "Super + Shift + A",
+          "desc": "Move Column Left Or To Monitor Left"
+        },
+        {
+          "keys": "Super + Shift + D",
+          "desc": "Move Column Right Or To Monitor Right"
+        }
+      ]
+    },
+    {
+      "title": "Move Windows",
+      "binds": [
+        {
+          "keys": "Super + Shift + S",
+          "desc": "Move Window Down Or To Workspace Down"
+        },
+        {
+          "keys": "Super + Shift + W",
+          "desc": "Move Window Up Or To Workspace Up"
+        }
+      ]
+    },
+    {
+      "title": "Column Management",
+      "binds": [
+        {
+          "keys": "Super + F",
+          "desc": "Maximize Column"
+        }
+      ]
+    },
+    {
+      "title": "Column Width",
+      "binds": [
+        {
+          "keys": "Super + WheelScrollDown",
+          "desc": "Set Column Width \" 10%\""
+        },
+        {
+          "keys": "Super + WheelScrollUp",
+          "desc": "Set Column Width \"+10%\""
+        }
+      ]
+    },
+    {
+      "title": "Window Size",
+      "binds": [
+        {
+          "keys": "Super + MouseMiddle",
+          "desc": "Reset Window Height"
+        }
+      ]
+    },
+    {
+      "title": "Screenshots",
+      "binds": [
+        {
+          "keys": "Super + Page_Up",
+          "desc": "Screenshot"
+        }
+      ]
+    },
+    {
+      "title": "Other",
+      "binds": [
+        {
+          "keys": "Super + O",
+          "desc": "Toggle Overview"
+        },
+        {
+          "keys": "Super + Shift + WheelScrollDown",
+          "desc": "Set Window Height \" 10%\""
+        },
+        {
+          "keys": "Super + Shift + WheelScrollUp",
+          "desc": "Set Window Height \"+10%\""
+        },
+        {
+          "keys": "Super + Shift + MouseMiddle",
+          "desc": "Expand Column To Available Width"
+        },
+        {
+          "keys": "Super + V",
+          "desc": "Toggle Window Floating"
+        },
+        {
+          "keys": "Super + M",
+          "desc": "Maximize Window To Edges"
+        }
+      ]
+    },
+    {
+      "title": "-l 1.0",
+      "binds": [
+        {
+          "keys": "Vol Up",
+          "desc": "Run: wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"
+        },
+        {
+          "keys": "Vol Down",
+          "desc": "Run: wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"
+        },
+        {
+          "keys": "Mute",
+          "desc": "Run: wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        },
+        {
+          "keys": "Mic Mute",
+          "desc": "Run: wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        },
+        {
+          "keys": "Play",
+          "desc": "Run: playerctl play-pause"
+        },
+        {
+          "keys": "Stop",
+          "desc": "Run: playerctl stop"
+        },
+        {
+          "keys": "Prev",
+          "desc": "Run: playerctl previous"
+        },
+        {
+          "keys": "Next",
+          "desc": "Run: playerctl next"
+        },
+        {
+          "keys": "Bright Up",
+          "desc": "Run: brightnessctl"
+        },
+        {
+          "keys": "Bright Down",
+          "desc": "Run: brightnessctl"
+        }
+      ]
+    },
+    {
+      "title": "best effort",
+      "binds": [
+        {
+          "keys": "Super + 1",
+          "desc": "Focus Workspace 1"
+        },
+        {
+          "keys": "Super + 2",
+          "desc": "Focus Workspace 2"
+        },
+        {
+          "keys": "Super + 3",
+          "desc": "Focus Workspace 3"
+        },
+        {
+          "keys": "Super + 4",
+          "desc": "Focus Workspace 4"
+        },
+        {
+          "keys": "Super + 5",
+          "desc": "Focus Workspace 5"
+        },
+        {
+          "keys": "Super + 6",
+          "desc": "Focus Workspace 6"
+        },
+        {
+          "keys": "Super + 7",
+          "desc": "Focus Workspace 7"
+        },
+        {
+          "keys": "Super + 8",
+          "desc": "Focus Workspace 8"
+        },
+        {
+          "keys": "Super + 9",
+          "desc": "Focus Workspace 9"
+        },
+        {
+          "keys": "Super + Ctrl + 1",
+          "desc": "Move Column To Workspace 1"
+        },
+        {
+          "keys": "Super + Ctrl + 2",
+          "desc": "Move Column To Workspace 2"
+        },
+        {
+          "keys": "Super + Ctrl + 3",
+          "desc": "Move Column To Workspace 3"
+        },
+        {
+          "keys": "Super + Ctrl + 4",
+          "desc": "Move Column To Workspace 4"
+        },
+        {
+          "keys": "Super + Ctrl + 5",
+          "desc": "Move Column To Workspace 5"
+        },
+        {
+          "keys": "Super + Ctrl + 6",
+          "desc": "Move Column To Workspace 6"
+        },
+        {
+          "keys": "Super + Ctrl + 7",
+          "desc": "Move Column To Workspace 7"
+        },
+        {
+          "keys": "Super + Ctrl + 8",
+          "desc": "Move Column To Workspace 8"
+        },
+        {
+          "keys": "Super + Ctrl + 9",
+          "desc": "Move Column To Workspace 9"
+        },
+        {
+          "keys": "Super + BracketLeft",
+          "desc": "Consume Or Expel Window Left"
+        },
+        {
+          "keys": "Super + BracketRight",
+          "desc": "Consume Or Expel Window Right"
+        }
+      ]
+    }
+  ],
+  "detectedCompositor": "niri",
+  "niriConfigPath": "~/.config/niri/config.kdl",
+  "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+  "modKeyVariable": "$mod",
+  "windowHeight": 850,
+  "windowWidth": 1600,
+  "columnCount": 4,
+  "autoHeight": true
+}

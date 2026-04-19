@@ -1,0 +1,61 @@
+* {
+    font-family: "InputSans Nerd Font", "Symbols Nerd Font";
+    font-size: 16px;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #c4a7e7;
+}
+
+#clock {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+/* Island media group — shared purple pill for prev | title | next */
+#custom-prev,
+#mpris,
+#custom-next {
+    background: linear-gradient(135deg, #1f1d2e 0%, #2a1f3d 100%);
+    color: #c4a7e7;
+    padding: 0 10px;
+    margin: 4px 0;
+    border-top: 1px solid rgba(196, 167, 231, 0.35);
+    border-bottom: 1px solid rgba(196, 167, 231, 0.35);
+    transition: all 200ms ease;
+}
+
+#custom-prev {
+    padding-left: 14px;
+    padding-right: 8px;
+    margin-left: 6px;
+    border-left: 1px solid rgba(196, 167, 231, 0.35);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#custom-next {
+    padding-left: 8px;
+    padding-right: 14px;
+    margin-right: 6px;
+    border-right: 1px solid rgba(196, 167, 231, 0.35);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#mpris {
+    font-weight: 600;
+    padding: 0 4px;
+}
+
+#custom-prev:hover,
+#custom-next:hover {
+    background: linear-gradient(135deg, #2a1f3d 0%, #3d2a52 100%);
+    color: #e0def4;
+}
+
+#mpris.paused {
+    color: #6e6a86;
+    font-style: italic;
+}
