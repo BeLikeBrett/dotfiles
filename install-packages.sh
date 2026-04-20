@@ -27,6 +27,7 @@ paru -S --needed -- \
     xwayland-satellite \
     waybar \
     fuzzel \
+    swaybg \
     \
     `# --- Terminals ---` \
     alacritty \

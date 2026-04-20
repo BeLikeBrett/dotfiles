@@ -1,6 +1,6 @@
 {
-  "activeCount": 4,
-  "completedCount": 10,
+  "activeCount": 2,
+  "completedCount": 12,
   "serverUrl": "http://192.168.0.108:8990",
   "apiKey": "brettlot-dev-key",
   "pollIntervalSec": 30

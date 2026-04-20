@@ -197,7 +197,7 @@
                     "enableColorization": true,
                     "generalTooltipText": "Search",
                     "hideMode": "alwaysExpanded",
-                    "icon": "device-imac-search",
+                    "icon": "input-search",
                     "id": "CustomButton",
                     "ipcIdentifier": "",
                     "leftClickExec": "fsearch",
@@ -274,7 +274,7 @@
                     ]
                 },
                 {
-                    "compactMode": true,
+                    "compactMode": false,
                     "diskPath": "/",
                     "iconColor": "tertiary",
                     "id": "SystemMonitor",

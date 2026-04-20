@@ -518,6 +518,15 @@ gestures {
 //polit starts
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "qs" "-c" "noctalia-shell"
-overview
+spawn-at-startup "swaybg" "-i" "/home/brett/Pictures/Wallpapers/prettysnowjpeg" "-m" "fill"
+overview {
+    backdrop-color "transparent"
+    zoom 0.2
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
 cursor {    xcursor-size 28
 }

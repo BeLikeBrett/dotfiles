@@ -28,10 +28,10 @@
   "postSaveScript": "",
   "replayEnabled": true,
   "replayAlwaysOn": true,
-  "replayDuration": "30",
-  "customReplayDuration": "30",
+  "replayDuration": "custom",
+  "customReplayDuration": "900",
   "replayStorage": "ram",
   "restartReplayOnSave": true,
   "dateFolders": false,
-  "restorePortalSession": false
+  "restorePortalSession": true
 }
