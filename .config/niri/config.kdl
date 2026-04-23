@@ -338,6 +338,15 @@ window-rule {
     variable-refresh-rate true
 }
 
+// Only the active window in the focused workspace shows the purple border.
+// `is-active` persists through overview (one per workspace); `is-focused` does not.
+window-rule {
+    match is-active=false
+    border {
+        active-color "#505050"
+    }
+}
+
 
 binds {
     Mod+K { spawn "/home/brett/.config/niri/Niri Keybind Visual/launcher" ; }
