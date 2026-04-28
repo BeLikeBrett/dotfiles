@@ -227,6 +227,14 @@
                     "wheelUpdateText": false
                 },
                 {
+                    "defaultSettings": {
+                        "density": "comfortable",
+                        "maxHistorySize": 100,
+                        "showImagePreviews": true
+                    },
+                    "id": "plugin:clipboard"
+                },
+                {
                     "compactMode": true,
                     "hideMode": "hidden",
                     "hideWhenIdle": false,

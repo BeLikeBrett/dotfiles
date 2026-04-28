@@ -528,6 +528,7 @@ gestures {
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "qs" "-c" "noctalia-shell"
 spawn-at-startup "swaybg" "-i" "/home/brett/Pictures/Wallpapers/prettysnowjpeg" "-m" "fill"
+spawn-sh-at-startup "/home/brett/.local/bin/noctalia-brightness-fix.sh"
 overview {
     backdrop-color "transparent"
     zoom 0.2
