@@ -88,11 +88,6 @@ NIconButton {
                         "action": "save-replay",
                         "icon": "device-floppy"
                     });
-                    items.push({
-                        "label": pluginApi.tr("messages.stop-replay"),
-                        "action": "stop-replay",
-                        "icon": "stop"
-                    });
                 } else {
                     items.push({
                         "label": pluginApi.tr("messages.start-replay"),
@@ -116,6 +111,15 @@ NIconButton {
                 "action": "widget-settings",
                 "icon": "settings"
             });
+
+            // Stop replay at the very bottom to avoid accidental clicks next to Save
+            if (mainInstance?.replayEnabled && mainInstance?.isReplaying) {
+                items.push({
+                    "label": pluginApi.tr("messages.stop-replay"),
+                    "action": "stop-replay",
+                    "icon": "stop"
+                });
+            }
 
             return items;
         }

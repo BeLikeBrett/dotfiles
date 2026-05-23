@@ -15,12 +15,15 @@ Item {
   property var subtaskMap: ({})
   signal subtasksChanged()
 
-  readonly property string serverUrl: pluginApi?.pluginSettings?.serverUrl ?? "http://localhost:8990"
-  readonly property string apiKey: pluginApi?.pluginSettings?.apiKey ?? "brettlot-dev-key"
-  // Polls the API every N seconds for changes made elsewhere (phone, other clients).
-  // 5s = ~5s worst-case lag from a phone push to the plugin updating. Loopback HTTP +
-  // tiny SQLite read = imperceptible CPU/network cost. See SYNC_GUIDE.md for the math.
-  readonly property int pollInterval: (pluginApi?.pluginSettings?.pollIntervalSec ?? 5) * 1000
+  // Settings resolution: user-saved settings → manifest defaults → hardcoded.
+  // Noctalia's loadPluginSettings returns {} when the per-plugin settings.json
+  // is missing or empty (JSON.parse("") throws), so without the manifest
+  // fallback the plugin would silently hit localhost:8990 — which has no API
+  // on a typical client — and show "0 tasks" forever.
+  readonly property var manifestDefaults: pluginApi?.manifest?.metadata?.defaultSettings ?? ({})
+  readonly property string serverUrl: pluginApi?.pluginSettings?.serverUrl ?? manifestDefaults.serverUrl ?? "http://localhost:8990"
+  readonly property string apiKey: pluginApi?.pluginSettings?.apiKey ?? manifestDefaults.apiKey ?? "brettlot-dev-key"
+  readonly property int pollInterval: (pluginApi?.pluginSettings?.pollIntervalSec ?? manifestDefaults.pollIntervalSec ?? 5) * 1000
 
   // Sync timer
   Timer {

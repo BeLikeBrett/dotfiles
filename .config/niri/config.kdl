@@ -83,7 +83,7 @@ output "DP-1" {
     scale 1
     transform "normal"
     position x=1920 y=0
-     variable-refresh-rate on-demand=true
+    variable-refresh-rate
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -357,13 +357,15 @@ binds {
     Mod+MouseMiddle repeat=false { toggle-overview ; }
     Mod+MouseForward { focus-monitor "DP-1" ; }
     Mod+MouseBack { focus-monitor "DP-2" ; }
-    Mod+Q repeat=false { close-window ; }
+    Mod+Q repeat=false allow-inhibiting=false { close-window ; }
+    Mod+Shift+Q allow-inhibiting=false { spawn-sh "pkill -KILL gamescope" ; }
     Mod+A { focus-column-left ; }
     Mod+D { focus-column-right ; }
     Mod+W { focus-window-or-workspace-up ; }
     Mod+E { spawn "nautilus" "--new-window" ; }
     Mod+X {        spawn "firefox" "--new-window" ;}
     Mod+G { spawn-sh "$HOME/.local/bin/keyresolve-toggle" ; }
+    Mod+Ctrl+Z { spawn-sh "pkill -SIGUSR1 -f '^(/nix/store/.*-gpu-screen-recorder|gpu-screen-recorder).*-r ' || pkill -SIGUSR1 -f '^com.dec05eba.gpu_screen_recorder.*-r '" ; }
 
     Mod+S { focus-window-or-workspace-down ; }
     Mod+Shift+A  { move-column-left-or-to-monitor-left ; }
